@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--spring整合service层-->
+
+
+    <!--1、 扫描service相关的bean   service 下面的包可以自动扫描过来-->
+    <context:component-scan base-package="com.wang.service"/>
+
+    <!--2、  将所有的业务类注入到spring，BookServiceImpl注入到IOC容器中-->
+    <bean id="BookServiceImpl" class="com.wang.service.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+
+    <!-- 配置事务管理器   声明式事务的配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池    注入数据源  -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
