@@ -27,7 +27,9 @@ public class BookController {
     //查询全部的书籍，并且返回到一个书籍展示页面
     public String list(Model model) {
         //调用业务层的方法，查询全部的书籍
+
         List<Books> list = bookService.queryAllBook();
+
         //返回到前端面页面展示
         model.addAttribute("list", list);
         //返回到allBook页面
